@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # The blank string is for the home page,
     # change when combining projects together.
-    path('', get_todo_list, name='home'),
+    path('', get_todo_list, name='get_todo_list'),
     path('summernote/', include('django_summernote.urls')),
-    path('add/', add_item, name='add')
+    path('add/', add_item, name='add_item')
 ]
