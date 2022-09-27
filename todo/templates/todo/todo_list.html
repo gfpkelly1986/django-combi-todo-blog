@@ -7,17 +7,24 @@
     <title>A Template file</title>
 </head>
 <body>
+    <!-- An example of basic logic applied to an html file 
+        The items variable gets here throught the context dictionary when using functional views -->
     <h1>This is a test file (for now)</h1>
     <table>
         {% for item in items %}
             <tr>
                 <td>
+                    {% if item.done %}
+                    <strike>{{ item.name }}</strike>
+                </td>
+                    {% else %}
+                <td>
                     {{ item.name }}
                 </td>
-                <td>
-                    {{ item.done }}
-                </td>
+                    {% endif %}
             </tr>
+           {% empty %} 
+           <tr><td>You have done all your jobs on the list</td></tr>
         {% endfor %}
     </table>
 
