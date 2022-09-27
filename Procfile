@@ -1,1 +1,1 @@
-web: gunicorn django-gfpkelly-todo.wsgi
+web: gunicorn todo.wsgi
