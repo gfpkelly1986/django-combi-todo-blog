@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from todo.views import get_todo_list
+from todo.views import get_todo_list, add_item
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +23,5 @@ urlpatterns = [
     # change when combining projects together.
     path('', get_todo_list, name='home'),
     path('summernote/', include('django_summernote.urls')),
+    path('add/', add_item, name='add')
 ]
