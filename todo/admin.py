@@ -1,7 +1,9 @@
 from django.contrib import admin
-from .models import Item
+from .models import Item, Post, Comment
 
-# Register your models here.
 # Functional example first
-
 admin.site.register(Item)
+admin.site.register(Post)
+admin.site.register(Comment)
+# @admin.register(Post)
+# class 

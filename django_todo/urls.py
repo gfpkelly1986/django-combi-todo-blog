@@ -14,12 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from todo.views import get_todo_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # The blank string is for the home page,
     # change when combining projects together.
-    path('', get_todo_list, name='home')
+    path('', get_todo_list, name='home'),
+    path('summernote/', include('django_summernote.urls')),
 ]
