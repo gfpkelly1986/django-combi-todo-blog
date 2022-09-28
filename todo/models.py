@@ -54,6 +54,6 @@ class Item(models.Model):
     done = models.BooleanField(null=False, blank=False, default=False)
 
     # This is how to override the str method from the inherited Model class.
-    # This is a great example of the benefits of class based inheritence at play.
+    # This is a great example of the benefits of class based inheritence.
     def __str__(self):
         return self.name
