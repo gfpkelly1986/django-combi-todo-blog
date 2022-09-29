@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from todo.views import get_todo_list, add_item, PostList
+from todo.views import get_todo_list, add_item, PostList, PostDetail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +25,6 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('add/', add_item, name='add_item'),
     path('todo/templates/index.html/', PostList.as_view(), name='home'),
+    path('<slug:slug>/', PostDetail.as_view(), name='post_detail'),
     path('accounts/', include('allauth.urls')),
 ]
