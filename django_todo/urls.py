@@ -15,18 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from todo.views import get_todo_list, add_item, edit_item, PostList, PostDetail, PostLike
-
+from todo import views
+# get_todo_list, add_item, edit_item, 
+# PostList, PostDetail, PostLike, toggle_item
 urlpatterns = [
     path('admin/', admin.site.urls),
     # The blank string is for the home page,
     # change when combining projects together.
-    path('', get_todo_list, name='get_todo_list'),
+    path('', views.get_todo_list, name='get_todo_list'),
     path('summernote/', include('django_summernote.urls')),
-    path('add/', add_item, name='add_item'),
-    path('edit/<item_id>', edit_item, name='edit'),
-    path('todo/templates/index.html/', PostList.as_view(), name='home'),
-    path('<slug:slug>/', PostDetail.as_view(), name='post_detail'),
-    path('like/<slug:slug>', PostLike.as_view(), name='post_like'),
+    path('add/', views.add_item, name='add_item'),
+    path('edit/<item_id>', views.edit_item, name='edit'),
+    path('toggle/<item_id>', views.toggle_item, name='toggle'),
+    path('delete/<item_id>', views.delete_item, name='delete'),
+    path('todo/templates/index.html/', views.PostList.as_view(), name='home'),
+    path('<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
+    path('like/<slug:slug>', views.PostLike.as_view(), name='post_like'),
     path('accounts/', include('allauth.urls')),
 ]
