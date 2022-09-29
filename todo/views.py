@@ -4,6 +4,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm
+from .forms import ItemForm
 
 
 # --- This is a FUNCTIONAL View
@@ -17,14 +18,19 @@ def get_todo_list(request):
     return render(request, 'todo/todo_list.html', context)
 
 
-# This function CREATES new items.
+# This function CREATES new items on a POST request.
+# It renders an instance of ItemForm on the additem page via context
 def add_item(request):
     if request.method == 'POST':
-        name = request.POST.get('item_name')
-        done = 'done' in request.POST
-        Item.objects.create(name=name, done=done)
-        return redirect('get_todo_list')
-    return render(request, 'todo/add_item.html')
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('get_todo_list')
+    form = ItemForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'todo/add_item.html', context)
 
 
 # --- This is a CLASS-BASED View
@@ -106,3 +112,10 @@ class PostLike(View):
             post.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
+# This is manually creating a form:
+# forms.ModelForm inherited to create class based form
+# name = request.POST.get('item_name')
+        # done = 'done' in request.POST
+        # Item.objects.create(name=name, done=done)
