@@ -76,8 +76,8 @@ class PostList(generic.ListView):
     paginate_by = 6
 
 
-# --- When using class based views, 
-# get and post are supplied as methods of the class --- 
+# --- When using class based views,
+# get and post are supplied as methods of the class ---
 class PostDetail(View):
 
     def get(self, request, slug, *args, **kwargs):
